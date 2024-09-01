@@ -3,7 +3,7 @@ library(tidyverse)
 
 # Constants
 n <- 3
-t_max <- 2000
+t_max <- 5000
 precision <- 0.000001
 
 # Functions
@@ -118,7 +118,7 @@ for (model in c('2.1', '2.2')) {
     PI_ <- (1 - (R_tot[1, 1] / q_R1 + R_tot[2, 1] / q_R2 + R_tot[3, 1] / q_R3) / K_)
   }
   write_tsv(res, paste0("Model_",model,"_res.tsv.gz"))
-  figure <- ggplot(res) + geom_point(aes(t, R1, color = 'R1')) + geom_point(aes(t, R2, color = 'R2')) + geom_point(aes(t, R3, color = 'R3'))
+  figure <- ggplot(res) + geom_point(aes(t, R1, color = 'R1')) + geom_point(aes(t, R2, color = 'R2')) + geom_point(aes(t, R3, color = 'R3')) + scale_colour_manual(values=c("red", "chartreuse", "blue"))
   pdf(paste0('Model_',model,'.pdf'),paper="a4r",width=0,height=0)
   print(figure)
   dev.off()
